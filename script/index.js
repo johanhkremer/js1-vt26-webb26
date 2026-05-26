@@ -9,7 +9,7 @@ function makeCoffe() {
 
     setTimeout(() => {
         asyncCoffe = "☕️"
-    }, 2000)
+    }, 3000)
 
     console.log("Your coffee is beeing made!")
 }
@@ -37,3 +37,31 @@ console.log(numbers(1, 2))
 console.log(numbers(1, 2))
 console.log(numbers(1, 2))
 
+//Callback
+
+//Sync
+function sendMessage(printMessage) {
+    const message = "Call me mr Callback"
+    printMessage(message)
+}
+
+function logMessage(message) {
+    console.log(message)
+}
+
+sendMessage(logMessage)
+
+//Async
+const cookRamen = (eatRamen) => {
+
+    setTimeout(() => {
+        const ramen = "🍜"
+        eatRamen(ramen)
+    }, 4000)
+}
+
+const eatRamen = (ramen) => {
+    console.log("Yum, let´s eat some:", ramen)
+}
+
+cookRamen(eatRamen)
