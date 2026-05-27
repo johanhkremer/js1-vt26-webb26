@@ -60,3 +60,49 @@ makeRamen()
     .then(onSuccess)
     .catch(onError)
     .finally(eatRamen)
+
+//Ytterligare ett exempel
+
+const step1 = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("Steg 1 klart")
+            resolve()
+        }, 2500)
+    })
+}
+
+const step2 = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("Steg 2 klart")
+            resolve()
+        }, 500)
+    })
+}
+
+const step3 = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("Steg 3 klart")
+            resolve()
+        }, 500)
+    })
+}
+
+const step4 = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("Steg 4 klart")
+            resolve()
+        }, 500)
+    })
+}
+
+step1()
+    .then(step2)
+    .then(step3)
+    .then(step4)
+    .then(() => {
+        console.log("Alla steg klara")
+    })
