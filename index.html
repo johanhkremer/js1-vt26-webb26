@@ -9,25 +9,28 @@
     <Link rel="stylesheet" href="style/index.css">
 
 
-    <title>Javascript 1 - Async</title>
+    <title>Javascript 1 - Väderapp</title>
 </head>
 
 <body class="container min-vh-100 d-flex flex-column">
     <header>
-        <h1>Async</h1>
+        <h1>Väderapp</h1>
     </header>
-    <a href="hell.html">Hell🔥</a>
-    <a href="then.html">Then</a>
-    <a href="asyncAwait.html">Async/Await</a>
 
     <main class="flex-grow-1">
+        <form id="weatherCityForm">
+            <label for="weatherCityInput">Skriv in en stad</label>
+            <br>
+            <input type="text" id="weatherCityInput">
+            <button type="submit">Hämta väder</button>
+        </form>
 
+        <div id="currentWeatherCard"></div>
     </main>
 
     <footer>
         <p>2026</p>
     </footer>
-
 
     <script src="script/index.js"></script>
 </body>

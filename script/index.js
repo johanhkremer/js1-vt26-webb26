@@ -1,67 +1,36 @@
-const syncCoffe = "☕️"
+const weatherCityForm = document.getElementById("weatherCityForm")
+const weatherCityInput = document.getElementById("weatherCityInput")
+const currentWeatherCard = document.getElementById("currentWeatherCard")
 
-console.log("Sync coffee", syncCoffe)
+//Skriv in din egen kod
+const OPEN_WEATHER_KEY = null
 
-let asyncCoffe
+const getCurrentWeather = async (city) => {
+    const [cityCoordinates] = await getCoordinates(city)
 
-function makeCoffe() {
-    console.log("✅ Turn on coffee machine")
+    const { lat, lon } = cityCoordinates
 
-    setTimeout(() => {
-        asyncCoffe = "☕️"
-    }, 3000)
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPEN_WEATHER_KEY}&units=metric&lang=sv`)
 
-    console.log("Your coffee is beeing made!")
+    const data = await response.json()
+
+    console.log(data)
+
+    //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 }
 
-makeCoffe()
+const getCoordinates = async (city) => {
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},SE&limit=1&appid=${OPEN_WEATHER_KEY}`)
 
-setTimeout(() => {
-    console.log("Async coffee:", asyncCoffe)
-}, 2500)
+    const data = await response.json()
 
-console.log("This coffee is taking too long 😡")
-
-//Pure funtions 💎 & side effects 💥
-
-//Pure function = same input -> same output
-
-function numbers(a, b) {
-    return a + b
+    return data
 }
 
-console.log(numbers(1, 2))
-console.log(numbers(1, 2))
-console.log(numbers(1, 2))
-console.log(numbers(1, 2))
-console.log(numbers(1, 2))
-console.log(numbers(1, 2))
+weatherCityForm.addEventListener("submit", (event) => {
+    event.preventDefault()
 
-//Callback
+    const city = weatherCityInput.value
 
-//Sync
-function sendMessage(printMessage) {
-    const message = "Call me mr Callback"
-    printMessage(message)
-}
-
-function logMessage(message) {
-    console.log(message)
-}
-
-sendMessage(logMessage)
-
-//Async
-const cookRamen = (eatRamen) => {
-
-    setTimeout(() => {
-        const ramen = "🍜"
-        eatRamen(ramen)
-    }, 4000)
-}
-
-const eatRamen = (ramen) => {
-    console.log("Yum, let´s eat some:", ramen)
-}
-
-cookRamen(eatRamen)
+    getCurrentWeather(city)
+})
