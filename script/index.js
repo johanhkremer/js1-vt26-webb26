@@ -5,6 +5,8 @@ const currentWeatherCard = document.getElementById("currentWeatherCard")
 //Skriv in din egen nyckel
 const OPEN_WEATHER_KEY = null
 
+//https://openweathermap.org/api/current?collection=current_forecast
+
 const getCurrentWeather = async (city) => {
     const [cityCoordinates] = await getCoordinates(city)
 
@@ -16,6 +18,8 @@ const getCurrentWeather = async (city) => {
 
     console.log(data)
 }
+
+//https://openweathermap.org/api/geocoding-api?collection=other
 
 const getCoordinates = async (city) => {
     const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},SE&limit=1&appid=${OPEN_WEATHER_KEY}`)
