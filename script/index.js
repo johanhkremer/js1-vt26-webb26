@@ -2,7 +2,7 @@ const weatherCityForm = document.getElementById("weatherCityForm")
 const weatherCityInput = document.getElementById("weatherCityInput")
 const currentWeatherCard = document.getElementById("currentWeatherCard")
 
-//Skriv in din egen kod
+//Skriv in din egen nyckel
 const OPEN_WEATHER_KEY = null
 
 const getCurrentWeather = async (city) => {
@@ -15,8 +15,6 @@ const getCurrentWeather = async (city) => {
     const data = await response.json()
 
     console.log(data)
-
-    //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 }
 
 const getCoordinates = async (city) => {
