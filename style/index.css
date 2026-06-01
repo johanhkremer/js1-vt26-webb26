@@ -2,6 +2,11 @@
     color: red;
 }
 
+#forcastContainer {
+    display: flex;
+    gap: 1rem;
+}
+
 .loader {
     width: 48px;
     height: 48px;
