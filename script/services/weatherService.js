@@ -1,6 +1,6 @@
 //! Använd inte Johans nyckel! Generera din egen.
 const BASE_URL = "https://api.openweathermap.org"
-const OPEN_WEATHER_KEY = "082b871a5bb53d73e79b7a95faeb958f"
+const OPEN_WEATHER_KEY = null
 
 // weatherService.js är en "service-modul": den ansvarar för API-anrop.
 // Andra filer kan importera funktionerna, men behöver inte känna till URL:erna.
