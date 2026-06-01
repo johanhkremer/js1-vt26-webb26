@@ -1,17 +1,25 @@
+// ../ betyder "gå upp en mapp". Från script/ui/render.js går sökvägen alltså
+// upp till script/ och sedan ner i services/weatherService.js.
 import { getWeatherCurrent, getWeatherForcast } from "../services/weatherService.js"
 
 const currentWeatherCard = document.getElementById("currentWeatherCard")
 const forcastContainer = document.getElementById("forcastContainer")
 
+// export gör funktionen tillgänglig för andra moduler.
+// I index.js kan vi sedan importera just renderLoadState med samma namn.
 export const renderLoadState = (container) => {
     container.innerHTML = "<span class='loader'></span>"
 }
 
+// Den här funktionen exporteras också, eftersom både index.js och denna fil
+// använder samma sätt att visa fel för användaren.
 export const renderErrorState = (container, message) => {
     container.innerHTML = message
     container.classList.add("red")
 }
 
+// Funktionen exporteras så att index.js kan starta renderingen,
+// men själva HTML-byggandet hålls samlat i UI-modulen.
 export const renderCurrentWeatherCard = async (lat, lon) => {
     try {
         renderLoadState(currentWeatherCard)
@@ -24,6 +32,7 @@ export const renderCurrentWeatherCard = async (lat, lon) => {
 
         currentWeatherCard.innerHTML = ""
 
+        // Template literals med backticks gör det enkelt att blanda HTML och variabler.
         currentWeatherCard.innerHTML = `
         <article class="card">
             <img 
@@ -48,12 +57,15 @@ export const renderCurrentWeatherCard = async (lat, lon) => {
     }
 }
 
+// Även prognosen är en export, så index.js kan anropa den utan att ha all
+// prognoslogik i startfilen.
 export const renderForcastCards = async (lat, lon) => {
     try {
         renderLoadState(forcastContainer)
 
         const cityForcast = await getWeatherForcast(lat, lon)
 
+        // API:et skickar flera prognoser per dag. Här väljer vi bara prognoser kl. 12.
         const cityForcastFilter = cityForcast.list.filter((forecast) => {
             return forecast.dt_txt.includes("12:00:00")
         })
