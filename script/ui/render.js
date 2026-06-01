@@ -8,14 +8,23 @@ const forcastContainer = document.getElementById("forcastContainer")
 // export gör funktionen tillgänglig för andra moduler.
 // I index.js kan vi sedan importera just renderLoadState med samma namn.
 export const renderLoadState = (container) => {
-    container.innerHTML = "<span class='loader'></span>"
+    container.innerHTML = `
+        <div class="d-flex justify-content-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Laddar...</span>
+            </div>
+        </div>
+    `
 }
 
 // Den här funktionen exporteras också, eftersom både index.js och denna fil
 // använder samma sätt att visa fel för användaren.
 export const renderErrorState = (container, message) => {
-    container.innerHTML = message
-    container.classList.add("red")
+    container.innerHTML = `
+        <div class="alert alert-danger mb-0" role="alert">
+            ${message}
+        </div>
+    `
 }
 
 // Funktionen exporteras så att index.js kan starta renderingen,
@@ -34,20 +43,31 @@ export const renderCurrentWeatherCard = async (lat, lon) => {
 
         // Template literals med backticks gör det enkelt att blanda HTML och variabler.
         currentWeatherCard.innerHTML = `
-        <article class="card">
-            <img 
-                src="https://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png"
-                alt="${cityWeather.weather[0].description}"
-                class="class="card-img-top"
-                style="max-width: 150px;"
-            >
-            <div class="card-body">
-                <h2 class="card-title">${cityWeather.name}</h2>
-                <p class="card-text">Temperatur: ${cityWeather.main.temp}°C</p>
-                <p class="card-text">Känns som: ${cityWeather.main.feels_like}°C</p>
-                <p class="card-text">Väder: ${cityWeather.weather[0].description}</p>
-                <p class="card-text">Luftfuktighet: ${cityWeather.main.humidity}%</p>
-                <p class="card-text">Vind: ${cityWeather.wind.speed} m/s</p>
+        <article class="card shadow-sm border-0">
+            <div class="card-body d-flex flex-column flex-md-row align-items-center gap-4">
+                <img
+                    src="https://openweathermap.org/img/wn/${cityWeather.weather[0].icon}@2x.png"
+                    alt="${cityWeather.weather[0].description}"
+                    class="img-fluid"
+                >
+                <div class="flex-grow-1 text-center text-md-start">
+                    <h3 class="card-title h4 mb-1">${cityWeather.name}</h3>
+                    <p class="text-secondary text-capitalize mb-3">${cityWeather.weather[0].description}</p>
+                    <p class="display-6 fw-bold mb-0">${cityWeather.main.temp}°C</p>
+                    <p class="text-secondary mb-0">Känns som ${cityWeather.main.feels_like}°C</p>
+                </div>
+                <div class="align-self-stretch align-self-md-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item px-0 d-flex justify-content-between gap-4">
+                            <span>Luftfuktighet</span>
+                            <span class="fw-semibold">${cityWeather.main.humidity}%</span>
+                        </li>
+                        <li class="list-group-item px-0 d-flex justify-content-between gap-4">
+                            <span>Vind</span>
+                            <span class="fw-semibold">${cityWeather.wind.speed} m/s</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </article>
     `
@@ -73,16 +93,18 @@ export const renderForcastCards = async (lat, lon) => {
         const cityForcastCards = cityForcastFilter.map((cityForcastCard) => {
 
             return `
-                <article class="card" style="width: 15rem;">
-                    <img
-                        src="https://openweathermap.org/img/wn/${cityForcastCard.weather[0].icon}@2x.png"
-                        alt="${cityForcastCard.weather[0].description}"
-                        class=card-img-top
-                    >
-                    <div class="card-body">
-                    <h5 class="card-title">Datum: ${cityForcastCard.dt_txt}</h5>
-                    <p class="card-text">Temperatur: ${cityForcastCard.main.temp}°C</p>
-                    <p class="card-text">Väder: ${cityForcastCard.weather[0].description}</p>
+                <article class="col">
+                    <div class="card h-100 shadow-sm border-0 text-center">
+                        <div class="card-body">
+                            <img
+                                src="https://openweathermap.org/img/wn/${cityForcastCard.weather[0].icon}@2x.png"
+                                alt="${cityForcastCard.weather[0].description}"
+                                class="img-fluid mb-2"
+                            >
+                            <h3 class="card-title h6">${cityForcastCard.dt_txt}</h3>
+                            <p class="fs-4 fw-bold mb-1">${cityForcastCard.main.temp}°C</p>
+                            <p class="card-text text-secondary text-capitalize mb-0">${cityForcastCard.weather[0].description}</p>
+                        </div>
                     </div>
                 </article>
             `

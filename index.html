@@ -6,43 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <Link rel="stylesheet" href="style/index.css">
-
 
     <title>Javascript 1 - Väderapp</title>
 </head>
 
-<body class="container min-vh-100 d-flex flex-column">
-    <header>
-        <h1>Väderapp</h1>
-    </header>
+<body class="bg-body-tertiary">
+    <div class="container min-vh-100 d-flex flex-column py-4">
+        <header class="text-center mb-4">
+            <p class="text-uppercase text-primary fw-semibold small mb-1">JavaScript 1</p>
+            <h1 class="display-5 fw-bold mb-2">Väderapp</h1>
+            <p class="lead text-secondary mb-0">Sök på en stad och visa aktuellt väder plus prognos.</p>
+        </header>
 
-    <main class="flex-grow-1">
-        <form id="weatherCityForm">
-            <label for="weatherCityInput">Skriv in en stad</label>
-            <br>
-            <input type="text" id="weatherCityInput">
-            <button type="submit">Hämta väder</button>
-        </form>
+        <main class="flex-grow-1">
+            <form id="weatherCityForm" class="card shadow-sm border-0 mb-5">
+                <div class="card-body">
+                    <label for="weatherCityInput" class="form-label fw-semibold">Skriv in en stad</label>
+                    <div class="input-group">
+                        <input type="text" id="weatherCityInput" class="form-control"
+                            placeholder="Till exempel Stockholm">
+                        <button type="submit" class="btn btn-primary">Hämta väder</button>
+                    </div>
+                </div>
+            </form>
 
-        <h2>Aktuellt Väder</h2>
-        <section id="currentWeatherCard">
+            <section class="mb-5">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 class="h4 mb-0">Aktuellt väder</h2>
+                </div>
+                <div id="currentWeatherCard">
 
-            <!-- Aktuell väderdata -->
+                    <!-- Aktuell väderdata -->
 
-        </section>
+                </div>
+            </section>
 
-        <h2>Prognos</h2>
-        <section id="forcastContainer">
+            <section class="mb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 class="h4 mb-0">Prognos</h2>
+                </div>
+                <div id="forcastContainer" class="row row-cols-1 row-cols-md-2 row-cols-xl-5 g-3">
 
-            <!-- Prognos väderdata -->
+                    <!-- Prognos väderdata -->
 
-        </section>
-    </main>
+                </div>
+            </section>
+        </main>
 
-    <footer>
-        <p>2026</p>
-    </footer>
+        <footer class="border-top py-3 text-center text-secondary small">
+            <p class="mb-0">2026</p>
+        </footer>
+    </div>
 
     <!--
         type="module" gör att webbläsaren behandlar script/index.js som en JavaScript-modul.

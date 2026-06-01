@@ -6,6 +6,7 @@ import { renderCurrentWeatherCard, renderForcastCards, renderErrorState, renderL
 const weatherCityForm = document.getElementById("weatherCityForm")
 const weatherCityInput = document.getElementById("weatherCityInput")
 const currentWeatherCard = document.getElementById("currentWeatherCard")
+const forcastContainer = document.getElementById("forcastContainer")
 
 // async behövs eftersom funktionen väntar på svar från API:et med await.
 const renderApp = async (city) => {
@@ -37,8 +38,6 @@ weatherCityForm.addEventListener("submit", (event) => {
 
     currentWeatherCard.innerHTML = ""
     forcastContainer.innerHTML = ""
-    currentWeatherCard.classList.remove("red")
-    forcastContainer.classList.remove("red")
 
     const city = weatherCityInput.value
 
