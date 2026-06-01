@@ -53,7 +53,7 @@ export const renderCurrentWeatherCard = async (lat, lon) => {
                 <div class="flex-grow-1 text-center text-md-start">
                     <h3 class="card-title h4 mb-1">${cityWeather.name}</h3>
                     <p class="text-secondary text-capitalize mb-3">${cityWeather.weather[0].description}</p>
-                    <p class="display-6 fw-bold mb-0">${cityWeather.main.temp}°C</p>
+                    <p class="display-6 fw-bold mb-0">${Math.round(cityWeather.main.temp)}°C</p>
                     <p class="text-secondary mb-0">Känns som ${cityWeather.main.feels_like}°C</p>
                 </div>
                 <div class="align-self-stretch align-self-md-center">
@@ -102,7 +102,7 @@ export const renderForcastCards = async (lat, lon) => {
                                 class="img-fluid mb-2"
                             >
                             <h3 class="card-title h6">${cityForcastCard.dt_txt}</h3>
-                            <p class="fs-4 fw-bold mb-1">${cityForcastCard.main.temp}°C</p>
+                            <p class="fs-4 fw-bold mb-1">${Math.round(cityForcastCard.main.temp)}°C</p>
                             <p class="card-text text-secondary text-capitalize mb-0">${cityForcastCard.weather[0].description}</p>
                         </div>
                     </div>
